@@ -18,7 +18,6 @@ export default async function (request) {
   if (request.method === "POST") {
     try {
       const reqBody = await request.text();
-      console.log("request body: ", reqBody);
       const res = await fetch("https://github.com/login/oauth/access_token", {
         method: "POST",
         body: reqBody,
@@ -27,7 +26,6 @@ export default async function (request) {
         },
       });
       const text = await res.text();
-      console.log("github api res: ", text);
       const params = new URLSearchParams(text);
       const resp = new Response(
         JSON.stringify(
