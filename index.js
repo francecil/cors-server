@@ -18,6 +18,24 @@ router.post('/github_access_token', async (ctx, next) => {
   await next();
 });
 
+router.get('/chromewebstore', async (ctx, next) => {
+  const { id } = ctx.query;
+  if (!id) {
+    ctx.status = 400;
+    ctx.body = { error: 'Missing extension id' };
+    return await next();
+  }
+  const url = `https://chromewebstore.google.com/detail/${id}`;
+  const res = await axios.get(url, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    },
+  });
+  ctx.type = 'text/html';
+  ctx.body = res.data;
+  await next();
+})
+
 router.get('/', async (ctx, next) => {
   ctx.body = 'a cors proxy server!';
   await next();

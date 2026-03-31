@@ -44,3 +44,6 @@ docker run -d --name cors-server -p8080:9999 dedicatus545/github-cors-server:1.0
 ```
 
 这里容器内部是 `9999` 端口，绑定主机的 `8080` 端口，这里可以根据你的服务器端口占用情况进行动态修改。
+
+## 2026-03-31 francecil
+- 补充了 Chrome Web Store 页面的请求代理
